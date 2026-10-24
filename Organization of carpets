@@ -1,0 +1,8 @@
+img (carpeta) Para uso exclusivo de imagenes de todos los archivos al agregar imagenes usar url("img/'nombre de tu imagen'")
+index (html) Agregar información de inicio enlace a reglamento, a muertos y relacionmasc dentro de esta agrgar altar y vela.
+style (css) Se diseña el index (SOLO ESO)
+muertos (html) Dentro va la explicación de día de muertos enlace a importancia.
+importancia (html) Dentro va la importancia de preservar las tradiciones mexicanas regreso a muertos
+relacionmasc (html) simbólica de las mascotas con el recuerdo, el acompañamiento y el camino al Mictlán enlace a xoloitz.
+reglamento (html) Agregar información y regreso a index
+Java (js) JavaScript para la interactividad del altar y la página
