@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas Mictlan</title>
+    <div class="niebla"></div>
+    <p>Dia de muertos</p>
+    <style>
+        p {
+            position: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #e00a18ef;
+            text-shadow: 0 0 10px #000;
+        }
+        /* Nivelador virtual*/
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    /* Marco principal */
+    body {
+        overflow: hidden;
+        background: radial-gradient(circle at center, #4a0072 0%, #050505 70%);
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        isolation: isolate;
+    }
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        width: min(90vw, 760px);
+        aspect-ratio: 1;
+        margin: auto;
+        background: url("img/Espiral.png") center / contain no-repeat;
+        opacity: 0.12;
+        pointer-events: none;
+        z-index: -1;
+        animation: girarEspiral 60s linear infinite, respirarEspiral 7s ease-in-out infinite alternate;
+    }
+    @keyframes girarEspiral {
+        to {
+            transform: rotate(9000deg);
+        }
+    }
+    @keyframes respirarEspiral {
+        from {
+            opacity: 0.08;
+        }
+        to {
+            opacity: 0.22;
+        }
+    }
+
+    .animation {
+        animation:girarEspiral 10s linear infinite, respirarEspiral 7s ease-in-out infinite alternate;
+    }
+
+        /* Detalles de petalos */
+    #petalos {
+        /* Contenedor de los petalos */
+        position: fixed;
+        inset: 0;
+        /* Contiene los petalos en la pantalla */
+        overflow: hidden;
+        /* Evita que los petalos tapen el ratón */
+        pointer-events: none;
+    }
+
+    .petalo {
+        /* Hace que aparecan petalos desde arriva de la pantalla */
+        position: absolute;
+        top: -40px;
+               /* Hace que no se deoformen los petalos */
+        height: auto;
+               /* Es lo que hace que caiga indefinidamente*/
+        animation: caer linear infinite;
+        filter: contrast(160%) brightness(100%);
+    }
+
+    /* Tamaño del petalo */
+    
+
+    @keyframes caer {
+        /* Define que cae */
+        to {
+            /* Indica cuando desaparece el petalo */
+            transform: translateY(110vh)
+            /* Hace que el petalo pase por la pantalla completamente y pueda desaparecer */
+             rotate(350deg);
+             /* Hace que la flor gire mientras cae*/
+        }
+
+    }
+
+
+    </style>
+</head>
+<body>
+    <div id="petalos" aria-hidden="true"></div>
+    <main class="huellitas">
+    </main>
+    <script src="java.js" defer></script>
+</body>
+</html>
