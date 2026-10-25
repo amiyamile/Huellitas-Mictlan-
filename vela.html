@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velas Simples</title>
+    <style>
+        /* Fondo base y flexbox para centrar todo */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #5a2a00; /* Naranja oscuro (iluminado) */
+            transition: background-color 0.5s;
+            font-family: sans-serif;
+        }
+
+        /* Clase para apagar la luz del cuarto */
+        body.oscuro {
+            background-color: #111; /* Casi negro */
+        }
+
+        /* Contenedor flex con mucho espacio entre las velas */
+        .altar {
+            display: flex;
+            flex-wrap: wrap; /* Permite que bajen de línea en celulares */
+            justify-content: center;
+            gap: 6rem; /* Separación muy grande entre velas */
+            margin: 3rem 0;
+        }
+
+        /* Estructura individual de cada vela */
+        .vela-grupo {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Fuego simple con animación de parpadeo */
+        .llama {
+            width: 16px;
+            height: 32px;
+            background: orange;
+            border-radius: 50% 50% 20% 20%;
+            animation: parpadeo 0.2s infinite alternate;
+            margin-bottom: 2px;
+        }
+
+        /* Cera de la vela */
+        .cera {
+            width: 40px;
+            height: 120px;
+            background: #ffe4b5; /* Color crema */
+            border-radius: 5px 5px 0 0;
+            z-index: 2;
+        }
+
+        /* Platito de metal en la base */
+        .plato {
+            position: absolute;
+            bottom: -10px;
+            width: 70px;
+            height: 20px;
+            background: #b0c4de; /* Color gris metálico */
+            border-radius: 50%;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        /* Bolita de humo oculta por defecto */
+        .humo {
+            position: absolute;
+            top: -10px;
+            width: 12px;
+            height: 12px;
+            background: gray;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        /* Clase que activa la animación del humo */
+        .humo.animar {
+            animation: subir 1s forwards;
+        }
+
+        /* Botón simple y bonito */
+        button {
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            background: orange;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Animaciones CSS (Keyframes) */
+        @keyframes parpadeo {
+            from { transform: scale(1); box-shadow: 0 0 10px orange; }
+            to { transform: scale(1.1); box-shadow: 0 0 20px yellow; }
+        }
+
+        @keyframes subir {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-40px) scale(2); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor principal de las velas -->
+    <div class="altar" id="altar-contenedor">
+        <!-- Las velas se generarán aquí con JavaScript para ahorrar líneas de código HTML repetido -->
+    </div>
+
+    <button id="btn-control">Apagar Velas</button>
+
+    <script>
+        // 1. Generamos las 6 velas con un ciclo simple para no copiar y pegar HTML 6 veces
+        const altar = document.getElementById('altar-contenedor');
+        for (let i = 0; i < 6; i++) {
+            altar.innerHTML += `
+                <div class="vela-grupo">
+                    <div class="llama"></div>
+                    <div class="humo"></div>
+                    <div class="cera"></div>
+                    <div class="plato"></div>
+                </div>
+            `;
+        }
+
+        // 2. Lógica del botón
+        const btn = document.getElementById('btn-control');
+        let encendidas = true;
+
+        btn.addEventListener('click', () => {
+            const llamas = document.querySelectorAll('.llama');
+            const humos = document.querySelectorAll('.humo');
+            
+            if (encendidas) {
+                // Apagar
+                document.body.classList.add('oscuro');
+                btn.textContent = 'Encender Velas';
+                
+                llamas.forEach(llama => llama.style.display = 'none');
+                
+                // Reiniciar y lanzar animación de humo
+                humos.forEach(humo => {
+                    humo.classList.remove('animar');
+                    void humo.offsetWidth; // Truco simple para reiniciar animación
+                    humo.classList.add('animar');
+                });
+            } else {
+                // Encender
+                document.body.classList.remove('oscuro');
+                btn.textContent = 'Apagar Velas';
+                llamas.forEach(llama => llama.style.display = 'block');
+            }
+            
+            encendidas = !encendidas; // Invertir el estado
+        });
+    </script>
+</body>
+</html>
