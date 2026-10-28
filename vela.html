@@ -3,36 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Velas Simples</title>
+    <title>Velas Iluminación Local</title>
     <style>
-        /* Fondo base y flexbox para centrar todo */
+        /* Fondo base siempre oscuro */
         body {
             margin: 0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #5a2a00; /* Naranja oscuro (iluminado) */
-            transition: background-color 0.5s;
+            background-color: #111; /* Casi negro constante */
             font-family: sans-serif;
+            position: relative; /* Necesario para centrar el botón absolutamente */
         }
 
-        /* Clase para apagar la luz del cuarto */
-        body.oscuro {
-            background-color: #111; /* Casi negro */
-        }
-
-        /* Contenedor flex con mucho espacio entre las velas */
+        /* Grid estructurado al 100% de la pantalla */
         .altar {
-            display: flex;
-            flex-wrap: wrap; /* Permite que bajen de línea en celulares */
-            justify-content: center;
-            gap: 6rem; /* Separación muy grande entre velas */
-            margin: 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-template-rows: repeat(2, auto);
+            justify-content: space-between;
+            align-content: space-between;
+            height: 100vh; /* Ocupa todo el alto */
+            padding: 50px 8vw; /* Padding para no pegar las velas a los bordes */
+            box-sizing: border-box;
+            margin: 0;
         }
 
-        /* Estructura individual de cada vela */
         .vela-grupo {
             position: relative;
             display: flex;
@@ -40,7 +34,19 @@
             align-items: center;
         }
 
-        /* Fuego simple con animación de parpadeo */
+        /* ----- EFECTO DE ILUMINACIÓN LOCAL ----- */
+        .luz-aura {
+            position: absolute;
+            top: -40px;
+            width: 160px;
+            height: 160px;
+            /* Círculo luminoso naranja difuminado hacia los bordes */
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            transition: opacity 0.3s ease; /* Para apagado suave */
+        }
+
         .llama {
             width: 16px;
             height: 32px;
@@ -48,57 +54,64 @@
             border-radius: 50% 50% 20% 20%;
             animation: parpadeo 0.2s infinite alternate;
             margin-bottom: 2px;
+            z-index: 3;
         }
 
-        /* Cera de la vela */
         .cera {
             width: 40px;
             height: 120px;
-            background: #ffe4b5; /* Color crema */
+            background: #ffe4b5;
             border-radius: 5px 5px 0 0;
             z-index: 2;
         }
 
-        /* Platito de metal en la base */
         .plato {
             position: absolute;
             bottom: -10px;
             width: 70px;
             height: 20px;
-            background: #b0c4de; /* Color gris metálico */
+            background: #a9b0ba; /* Color metal */
             border-radius: 50%;
-            box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+            box-shadow: inset 0 -3px 5px rgba(0,0,0,0.4);
             z-index: 1;
         }
 
-        /* Bolita de humo oculta por defecto */
         .humo {
             position: absolute;
             top: -10px;
             width: 12px;
             height: 12px;
-            background: gray;
+            background: rgba(150, 150, 150, 0.8);
             border-radius: 50%;
             opacity: 0;
+            z-index: 3;
         }
 
-        /* Clase que activa la animación del humo */
-        .humo.animar {
-            animation: subir 1s forwards;
-        }
+        /* --- CLASE PARA APAGAR LA VELA --- */
+        /* Cuando el grupo tiene esta clase, ocultamos la luz y el fuego */
+        .vela-grupo.apagada .llama { display: none; }
+        .vela-grupo.apagada .luz-aura { opacity: 0; }
 
-        /* Botón simple y bonito */
+        .humo.animar { animation: subir 1s forwards; }
+
+        /* Botón centrado en la pantalla */
         button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             padding: 12px 24px;
-            font-size: 1.2rem;
-            background: orange;
+            font-size: 1.1rem;
+            background: #ff8c00;
+            color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
+            z-index: 10;
         }
 
-        /* Animaciones CSS (Keyframes) */
+        /* Keyframes */
         @keyframes parpadeo {
             from { transform: scale(1); box-shadow: 0 0 10px orange; }
             to { transform: scale(1.1); box-shadow: 0 0 20px yellow; }
@@ -112,19 +125,16 @@
 </head>
 <body>
 
-    <!-- Contenedor principal de las velas -->
-    <div class="altar" id="altar-contenedor">
-        <!-- Las velas se generarán aquí con JavaScript para ahorrar líneas de código HTML repetido -->
-    </div>
-
+    <div class="altar" id="altar-contenedor"></div>
     <button id="btn-control">Apagar Velas</button>
 
     <script>
-        // 1. Generamos las 6 velas con un ciclo simple para no copiar y pegar HTML 6 veces
+        // 1. Generar 6 velas rápidamente con un bucle
         const altar = document.getElementById('altar-contenedor');
         for (let i = 0; i < 6; i++) {
             altar.innerHTML += `
                 <div class="vela-grupo">
+                    <div class="luz-aura"></div>
                     <div class="llama"></div>
                     <div class="humo"></div>
                     <div class="cera"></div>
@@ -133,35 +143,28 @@
             `;
         }
 
-        // 2. Lógica del botón
+        // 2. Controlar todas a la vez
         const btn = document.getElementById('btn-control');
+        const velas = document.querySelectorAll('.vela-grupo');
         let encendidas = true;
 
         btn.addEventListener('click', () => {
-            const llamas = document.querySelectorAll('.llama');
-            const humos = document.querySelectorAll('.humo');
-            
-            if (encendidas) {
-                // Apagar
-                document.body.classList.add('oscuro');
-                btn.textContent = 'Encender Velas';
-                
-                llamas.forEach(llama => llama.style.display = 'none');
-                
-                // Reiniciar y lanzar animación de humo
-                humos.forEach(humo => {
+            encendidas = !encendidas; // Cambiamos el estado (true/false)
+            btn.textContent = encendidas ? 'Apagar Velas' : 'Encender Velas';
+
+            // Recorremos todas las velas para aplicar los cambios
+            velas.forEach(vela => {
+                // Alternamos la clase 'apagada', esto oculta la luz y la llama gracias al CSS
+                vela.classList.toggle('apagada', !encendidas);
+
+                // Si acabamos de apagarlas, disparamos la animación del humo
+                if (!encendidas) {
+                    const humo = vela.querySelector('.humo');
                     humo.classList.remove('animar');
-                    void humo.offsetWidth; // Truco simple para reiniciar animación
+                    void humo.offsetWidth; // Reinicia la animación en el navegador
                     humo.classList.add('animar');
-                });
-            } else {
-                // Encender
-                document.body.classList.remove('oscuro');
-                btn.textContent = 'Apagar Velas';
-                llamas.forEach(llama => llama.style.display = 'block');
-            }
-            
-            encendidas = !encendidas; // Invertir el estado
+                }
+            });
         });
     </script>
 </body>
