@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dia de los Muertos</title>
+
+    <!-- Conexión con Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Fuente Delicious Handrawn -->
+    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
+
+     <img class="logo-calavera" src="img/Calavera.png" alt="Calavera">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .text-block {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-block h1 {
+            margin-top: 0;
+        }
+
+        text-block p {
+            margin-bottom: 1.6;
+        }
+
+        body {
+            
+            background-color: #f7f4f4;
+            background-image: url("https://i.pinimg.com/736x/af/ab/53/afab53bcef39b2b15be11a2f7999a1b4.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #000000;
+            font-family: "Delicious Handrawn", cursive;
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 24px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .text-block {
+            flex: 1;
+            text-align: right;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-family: "Delicious Handrawn", cursive;
+            font-size: 2.8rem;
+            margin: 0 0 20px;
+        }
+
+        p {
+            font-family: "Delicious Handrawn", cursive;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        img {
+            width: 260px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-calavera {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 120px;
+    opacity: 0.4;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+
+        .logo-calavera:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .text-block {
+                text-align: center;
+            }
+
+
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img
+            src="img/Snopy.png"
+            alt="Calavera"
+        >
+
+        <div class="text-block">
+            <h1>¡Feliz Día de los Muertos!</h1>
+            <p>
+¡Feliz Día de los Muertos! 💀🌼
+El Día de Muertos es una de las fiestas más importantes de México. Se celebra el 1 y 2 de noviembre para recordar y honrar a nuestros seres queridos que han fallecido. Esta fecha representa el amor, el respeto y el cariño por quienes siguen vivos en nuestros corazones.
+
+Con ofrendas, flores de cempasúchil, veladoras, fotos y alimentos, las familias recuerdan a sus difuntos y les dan un lugar especial en sus hogares. Cada cosa tiene un sentido: las flores guían el camino y las veladoras representan la luz.
+
+Esta tradición une colores, aromas y costumbres que pasan de una generación a otra. También nos ayuda a valorar la vida, unir a la familia y cuidar la cultura de México.
+
+🕯️🌼 Quienes viven en nuestros recuerdos siempre están en nuestros corazones. 🌼🕯️
+            </p>
+        </div>
+    </div>
+</body>
+</html>
