@@ -3,58 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relación Simbólica - Huellitas al Mictlán 2026</title>
+    <title>Huellitas en el Corazón - Altar de Mascotas</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d021a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Botón de Inicio */
+        .btn-inicio {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            padding: 8px 18px;
+            background-color: #ff7700;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .btn-inicio:hover {
+            background-color: #ffcc00;
+            color: #120224;
+            transform: scale(1.05);
+        }
+
+        /* Título de la sección */
+        .titulo-seccion {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .titulo-seccion h1 {
+            color: #ff9900;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+        }
+
+        .titulo-seccion p {
+            color: #e0d0f0;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* Cuadrícula para las tarjetas */
+        .galeria-mascotas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Estilo de cada Tarjeta */
+        .tarjeta-mascota {
+            background-color: #1a082e;
+            border: 2px solid #ff7700;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* EFECTOS HOVER */
+        .tarjeta-mascota:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #ffcc00;
+            box-shadow: 0 10px 20px rgba(255, 153, 0, 0.4);
+        }
+
+        /* Contenedor de la foto con zoom */
+        .contenedor-foto {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 2px solid #ff7700;
+        }
+
+        .contenedor-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .tarjeta-mascota:hover .contenedor-foto img {
+            transform: scale(1.1);
+        }
+
+        /* Nombre de la mascota */
+        .nombre-mascota {
+            color: #ffcc00;
+            font-size: 1.4rem;
+            margin: 15px 10px 8px 10px;
+        }
+
+        /* Frase dedicatoria */
+        .frase-dedicatoria {
+            color: #d8c2ed;
+            font-size: 0.95rem;
+            padding: 0 15px;
+            line-height: 1.4;
+        }
+    </style>
 </head>
+<body>
 
-<!-- FONDO DE PÁGINA -->
-<body style="background-image: url('img/mascotas%20fondo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px;">
+    <!-- Botón que redirige a inicio -->
+    <a href="index.html" class="btn-inicio">Inicio</a>
 
-    <!-- ENCABEZADO Y NAVEGACIÓN -->
-    <header style="background-color: rgba(0, 0, 0, 0.85); padding: 20px; border-radius: 10px; text-align: center; border-bottom: 3px solid #ff9f43;">
-        <h1 style="margin: 0; color: #ff9f43; font-size: 2rem;">CBTis 246</h1>
-        <h2 style="margin: 5px 0 15px 0; color: #ffffff; font-size: 1.3rem;">Huellitas al Mictlán 2026</h2>
-        <nav>
-            <a href="index.html" style="color: #ff9f43; margin: 0 10px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">Inicio</a>
-        </nav>
-    </header>
+    <div class="titulo-seccion">
+        <h1>Siempre en Nuestro Corazón 🐾</h1>
+        <p>"Un compañero de vida nunca se va del todo, vive eternamente en nuestros recuerdos."</p>
+    </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main style="background-color: rgba(0, 0, 0, 0.82); padding: 30px; border-radius: 12px; margin-top: 25px; max-width: 850px; margin-left: auto; margin-right: auto; line-height: 1.7;">
-        
-        <h2 style="color: #ff9f43; text-align: center; font-size: 1.8rem; margin-top: 0;">Relación Simbólica de las Mascotas</h2>
-        <p style="text-align: center; font-style: italic; color: #feca57; margin-bottom: 30px; font-size: 1.1rem;">El recuerdo, el acompañamiento y el camino hacia el Mictlán</p>
+    <!-- Galería de Tarjetas con las imágenes locales -->
+    <div class="galeria-mascotas">
 
-        <!-- SECCIÓN 1: ACOMPAÑAMIENTO -->
-        <section style="margin-bottom: 25px; background-color: rgba(255, 255, 255, 0.05); padding: 18px; border-radius: 8px; border-left: 4px solid #ff6b6b;">
-            <h3 style="color: #ff6b6b; margin-top: 0; font-size: 1.3rem;">1. El Acompañamiento en Vida y Más Allá</h3>
-            <p style="margin-bottom: 0;">
-                Durante su estancia en la Tierra, nuestras mascotas nos brindan lealtad incondicional, amor sincero y un consuelo único en cada etapa de nuestra vida. Dentro de la cosmovisión del Día de Muertos, esta unión va mucho más allá de la existencia física. Se cree que el lazo afectivo creado entre una persona y su compañero de vida no se destruye con la muerte, sino que se transforma en una conexión espiritual donde ellos continúan acompañándonos y cuidándonos desde el plano donde se encuentren.
-            </p>
-        </section>
+        <!-- Tarjeta 1: Tyson -->
+        <div class="tarjeta-mascota">
+            <div class="contenedor-foto">
+                <img src="img/tyson.jpg" alt="Fotografía de Tyson">
+            </div>
+            <h2 class="nombre-mascota">Tyson 🐶</h2>
+            <p class="frase-dedicatoria">"Gracias por enseñarme el significado del amor incondicional y acompañarme en cada paso."</p>
+        </div>
 
-        <!-- SECCIÓN 2: RECUERDO EN EL ALTAR -->
-        <section style="margin-bottom: 25px; background-color: rgba(255, 255, 255, 0.05); padding: 18px; border-radius: 8px; border-left: 4px solid #feca57;">
-            <h3 style="color: #feca57; margin-top: 0; font-size: 1.3rem;">2. El Recuerdo a Través del Altar de Muertos</h3>
-            <p style="margin-bottom: 0;">
-                Integrar a nuestros perros, gatos y otras mascotas en las ofrendas es un acto de amor y gratitud para honrar su memoria. Al colocar su fotografía junto a las luces de las veladoras, el aroma del cempasúchil y sus objetos queridos (como sus premios o juguetes predilectos), les ayudamos a encontrar el camino de regreso a casa durante la celebración. De esta forma, reafirmamos que su paso por nuestras vidas dejó una huella imborrable y que siempre formarán parte de nuestra familia.
-            </p>
-        </section>
+        <!-- Tarjeta 2: Susurros -->
+        <div class="tarjeta-mascota">
+            <div class="contenedor-foto">
+                <img src="img/susurros.jpg" alt="Fotografía de Susurros">
+            </div>
+            <h2 class="nombre-mascota">Susurros 🐱</h2>
+            <p class="frase-dedicatoria">"Tus ronroneos aún calientan mi alma. Siempre serás el rey del hogar."</p>
+        </div>
 
-        <!-- SECCIÓN 3: CAMINO AL MICTLAN -->
-        <section style="margin-bottom: 25px; background-color: rgba(255, 255, 255, 0.05); padding: 18px; border-radius: 8px; border-left: 4px solid #ff9f43;">
-            <h3 style="color: #ff9f43; margin-top: 0; font-size: 1.3rem;">3. El Guía en el Camino hacia el Mictlán</h3>
-            <p style="margin-bottom: 0;">
-                En las tradiciones prehispánicas mesoamericanas, el tránsito hacia el descanso eterno o Mictlán requería cruzar un largo camino de nueve niveles repleto de duras pruebas. El primer obstáculo era atravesar el profundo y caudaloso río Apanohuaia. Según las antiguas creencias, solo aquellas almas que trataron con bondad, amor y respeto a los animales en vida podían recibir el auxilio de sus fieles compañeros espirituales, quienes los esperaban a la orilla del río para ayudarlos a cruzar a salvo sobre su lomo.
-            </p>
-        </section>
+        <!-- Tarjeta 3: Zanahoria -->
+        <div class="tarjeta-mascota">
+            <div class="contenedor-foto">
+                <img src="img/zanahoria.jpg" alt="Fotografía de Zanahoria">
+            </div>
+            <h2 class="nombre-mascota">Zanahoria 🐰</h2>
+            <p class="frase-dedicatoria">"Llenaste de ternura y alegría cada día con tus pequeñas travesuras."</p>
+        </div>
 
-    </main>
+    </div>
 
-    <!-- PIE DE PÁGINA -->
-    <footer style="background-color: rgba(0, 0, 0, 0.85); text-align: center; padding: 15px; border-radius: 10px; margin-top: 25px; border-top: 1px solid #ff9f43;">
-        <p style="margin: 0; color: #cccccc; font-size: 0.95rem;">&copy; 2026 CBTis 246 - Evento "Huellitas al Mictlán"</p>
-    </footer>
-
-    <script src="java.js"></script>
 </body>
 </html>
