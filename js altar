@@ -1,0 +1,29 @@
+let marcoActualId = null;
+
+// Esperar a que el DOM cargue por completo
+document.addEventListener('DOMContentLoaded', () => {
+    const inputFoto = document.getElementById('input-foto');
+    const botonesEditar = document.querySelectorAll('.btn-foto');
+
+    // Escuchar el clic en cada botón de "Editar Foto"
+    botonesEditar.forEach(boton => {
+        boton.addEventListener('click', (e) => {
+            marcoActualId = e.target.getAttribute('data-target');
+            inputFoto.click();
+        });
+    });
+
+    // Cargar la imagen seleccionada cuando cambia el input de archivo
+    inputFoto.addEventListener('change', (event) => {
+        const archivo = event.target.files[0];
+        if (archivo && marcoActualId) {
+            const lector = new FileReader();
+            lector.onload = function(e) {
+                const imgElement = document.getElementById(marcoActualId);
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block';
+            };
+            lector.readAsDataURL(archivo);
+        }
+    });
+});
