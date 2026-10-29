@@ -1,4 +1,5 @@
 let marcoActualId = null;
+let nombreActualId = null;
 
 // Esperar a que el DOM cargue por completo
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     botonesEditar.forEach(boton => {
         boton.addEventListener('click', (e) => {
             marcoActualId = e.target.getAttribute('data-target');
+            nombreActualId = e.target.getAttribute('data-name');
+            
+            // Pedir el nombre de la mascota
+            const nombreMascota = prompt('Ingresa el nombre de tu mascota:');
+            
+            // Si el usuario ingresó un nombre, lo mostramos en la etiqueta
+            if (nombreMascota !== null && nombreMascota.trim() !== '') {
+                const elementoNombre = document.getElementById(nombreActualId);
+                if (elementoNombre) {
+                    elementoNombre.textContent = nombreMascota.trim();
+                    elementoNombre.style.display = 'block';
+                }
+            }
+
+            // Abrir selector de archivos de imagen
             inputFoto.click();
         });
     });
